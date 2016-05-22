@@ -1,0 +1,17 @@
+.row {
+    flex-direction: row;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.row.w-100vw,
+.col.w-100vw {
+    width: 100vw;
+}
+
+.row.w-100,
+.col.w-100 {
+    width: 100%;
+}
