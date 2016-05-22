@@ -1,5 +1,4 @@
-# akkad-docs
-Documentation for Akkad
+# WebVR Babylon test project.
 
 ## Quick start
 ```
