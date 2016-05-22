@@ -1,5 +1,7 @@
 # WebVR Babylon test project.
 
+https://github.com/toji/webvr-samples/blob/gh-pages/05-room-scale.html
+
 ## Quick start
 ```
 $ npm run setup:dev
