@@ -1,4 +1,8 @@
-import Babylon from 'babylonjs';
+import Babylon, {Vector3, Quaternion, Matrix} from 'babylonjs';
+import {createGamepadBoxes, updateGamepadBox, checkGamepad, getVRGamepads} from './gamepads';
+
+let counter = 0;
+let standMatrix = null;
 
 function createBoxes(scene) {
   /* Boxes */
@@ -49,17 +53,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
         let light = new Babylon.HemisphericLight('light1', new Babylon.Vector3(0,1,0), scene);
 
-        const {sizeX, sizeZ} = display.stageParameters;
-        console.log("room size", sizeX, sizeZ);
+        const {sizeX, sizeZ, sittingToStandingTransform} = display.stageParameters;
+        standMatrix = Matrix.FromArray(sittingToStandingTransform);
+
         let ground = Babylon.Mesh.CreateGround('ground1', sizeX, sizeZ, 2, scene);
         ground.material = new Babylon.StandardMaterial('groundTexture1', scene);
         ground.material.backFaceCulling = false;
 
         createBoxes(scene);
+        createGamepadBoxes(scene);
 
         function onAnimationFrame(){
           display.requestAnimationFrame(onAnimationFrame);
           scene.render();
+          counter += 1;
+
+          checkGamepad(standMatrix);
+          if (counter % 90 === 0) {
+              const vrGamepads = getVRGamepads();
+              console.log(vrGamepads);
+          }
         }
 
         display.requestAnimationFrame(onAnimationFrame);
