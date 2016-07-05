@@ -12,7 +12,7 @@
     "start:dev": "node server.dev.js",
     "build": "webpack --config webpack.config.prod.js --display-error-details",
     "postinstall": "npm run clean && npm run build",
-    "build:dev": "npm run clean && NODE_ENV=development webpack --config webpack.config.dev.js --display-error-details",
+    "build:dev": "npm run clean && webpack --config webpack.config.dev.js --display-error-details",
     "link:akkad": "npm link akkad"
   },
   "engines": {
